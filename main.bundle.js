@@ -414,7 +414,7 @@
 	  if (host === "localhost" || host === "127.0.0.1") {
 	    return "http://localhost:3000";
 	  } else {
-	    return "https://radiant-scrubland-30997.herokuapp.com/api/v1/foods";
+	    return "https://radiant-scrubland-30997.herokuapp.com";
 	  }
 	};
 
