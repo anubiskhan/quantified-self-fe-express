@@ -467,12 +467,14 @@
 	};
 
 	var getEachRecipe = function getEachRecipe(recipes) {
+	  debugger;
 	  return recipes.forEach(function (recipe) {
 	    renderRecipe(recipe);
 	  });
 	};
 
 	var renderRecipe = function renderRecipe(recipe) {
+	  debugger;
 	  $('#recipes-info').prepend('<h3> Recipe name: ' + recipe.name + '</h3>\n    <a href=' + recipe.url + '>Cook it today!</a>');
 	};
 
