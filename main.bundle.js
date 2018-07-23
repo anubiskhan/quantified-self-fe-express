@@ -445,8 +445,8 @@
 	var getRecipes = function getRecipes(foodId) {
 	  recipesAPIFetch(foodId, 'GET').then(function (response) {
 	    return handleResponse(response);
-	  }).then(function (recipes) {
-	    return getEachRecipe(recipes);
+	  }).then(function (recipesArray) {
+	    return getEachRecipe(recipesArray);
 	  }).catch(function (error) {
 	    return console.error({ error: error });
 	  });
@@ -454,7 +454,6 @@
 
 	var handleResponse = function handleResponse(response) {
 	  return response.json().then(function (json) {
-	    console.log(json);
 	    if (!response.ok) {
 	      var error = {
 	        status: response.status,
@@ -469,6 +468,7 @@
 
 	var getEachRecipe = function getEachRecipe(recipes) {
 	  recipes.forEach(function (recipe) {
+	    console.log(recipe);
 	    renderRecipe(recipe);
 	  });
 	};
