@@ -73,7 +73,8 @@
 	  if (fileName === 'foods.html' || fileName === 'foods') {
 	    foodsRequests.getFoods();
 	  } else if (fileName === 'recipes.html' || fileName === 'recipes') {
-	    recipesRequests.getRecipes();
+	    var foodId = location.search.split('=')[1];
+	    recipesRequests.getRecipes(foodId);
 	  } else {
 	    foodsDiary.getDiaryFoods();
 	    foodsDiary.getMeals();
@@ -441,8 +442,8 @@
 	  });
 	};
 
-	var getRecipes = function getRecipes() {
-	  recipesAPIFetch('', 'GET').then(function (response) {
+	var getRecipes = function getRecipes(foodId) {
+	  recipesAPIFetch(foodId, 'GET').then(function (response) {
 	    return handleResponse(response);
 	  }).then(function (recipes) {
 	    return getEachRecipe(recipes);
