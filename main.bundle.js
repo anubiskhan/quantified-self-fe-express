@@ -467,7 +467,8 @@
 	};
 
 	var getEachRecipe = function getEachRecipe(recipes) {
-	  return recipes.recipes.forEach(function (recipe) {
+	  console.log(recipes);
+	  return recipes.forEach(function (recipe) {
 	    renderRecipe(recipe);
 	  });
 	};
