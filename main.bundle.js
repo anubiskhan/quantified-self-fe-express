@@ -47,11 +47,12 @@
 	'use strict';
 
 	var foodsRequests = __webpack_require__(1);
-	var foodsDiary = __webpack_require__(3);
-	var events = __webpack_require__(4);
+	var recipesRequests = __webpack_require__(3);
+	var foodsDiary = __webpack_require__(4);
+	var events = __webpack_require__(5);
 	var fileName = location.pathname.split('/').slice(-1)[0];
-	__webpack_require__(5);
-	__webpack_require__(9);
+	__webpack_require__(6);
+	__webpack_require__(10);
 
 	$(document).ready(function () {
 	  renderData(fileName);
@@ -71,6 +72,8 @@
 	var renderData = function renderData(fileName) {
 	  if (fileName === 'foods.html' || fileName === 'foods') {
 	    foodsRequests.getFoods();
+	  } else if (fileName === 'recipes.html' || fileName === 'recipes') {
+	    recipesRequests.getRecipes();
 	  } else {
 	    foodsDiary.getDiaryFoods();
 	    foodsDiary.getMeals();
@@ -428,6 +431,60 @@
 
 	'use strict';
 
+	var baseURL = __webpack_require__(2).baseURL();
+
+	var recipesAPIFetch = function recipesAPIFetch(id, method, body) {
+	  return fetch(baseURL + '/api/v1/foods/' + id + '/recipes', {
+	    method: '' + method,
+	    headers: { 'Content-Type': 'application/json' },
+	    body: JSON.stringify(body)
+	  });
+	};
+
+	var getRecipes = function getRecipes() {
+	  recipesAPIFetch('', 'GET').then(function (response) {
+	    return handleResponse(response);
+	  }).then(function (recipes) {
+	    return getEachRecipe(recipes);
+	  }).catch(function (error) {
+	    return console.error({ error: error });
+	  });
+	};
+
+	var handleResponse = function handleResponse(response) {
+	  return response.json().then(function (json) {
+	    if (!response.ok) {
+	      var error = {
+	        status: response.status,
+	        statusTest: response.statusText,
+	        json: json
+	      };
+	      return Promise.reject(error);
+	    }
+	    return json;
+	  });
+	};
+
+	var getEachRecipe = function getEachRecipe(recipes) {
+	  return recipes.forEach(function (recipe) {
+	    renderRecipe(recipe);
+	  });
+	};
+
+	var renderRecipe = function renderRecipe(recipe) {
+	  $('#recipes-info').prepend('<h3> Recipe name: ' + recipe.name + '</h3>\n    <a href=' + recipe.url + '>Cook it today!</a>');
+	};
+
+	module.exports = {
+	  getRecipes: getRecipes
+	};
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
 	var foodsRequests = __webpack_require__(1);
 
 	var baseURL = __webpack_require__(2).baseURL();
@@ -595,7 +652,7 @@
 	};
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -637,16 +694,16 @@
 	};
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(6);
+	var content = __webpack_require__(7);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(8)(content, {});
+	var update = __webpack_require__(9)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -663,10 +720,10 @@
 	}
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(7)();
+	exports = module.exports = __webpack_require__(8)();
 	// imports
 
 
@@ -677,7 +734,7 @@
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports) {
 
 	/*
@@ -733,7 +790,7 @@
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/*
@@ -985,16 +1042,16 @@
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(10);
+	var content = __webpack_require__(11);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(8)(content, {});
+	var update = __webpack_require__(9)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -1011,10 +1068,10 @@
 	}
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(7)();
+	exports = module.exports = __webpack_require__(8)();
 	// imports
 	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Montserrat);", ""]);
 
