@@ -474,6 +474,7 @@
 
 	var renderRecipe = function renderRecipe(recipe) {
 	  console.log(recipe);
+	  console.log('This');
 	  $('#recipes-info').append('<h3> Recipe name: ' + recipe.name + '</h3>\n    <a href=' + recipe.url + '>Cook it today!</a>');
 	};
 
