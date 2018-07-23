@@ -473,7 +473,7 @@
 	};
 
 	var renderRecipe = function renderRecipe(recipe) {
-	  $('#recipes-info').prepend('<h3> Recipe name: ' + recipe.name + '</h3>\n    <a href=' + recipe.url + '>Cook it today!</a>');
+	  $('#recipes-info').append('<h3> Recipe name: ' + recipe.name + '</h3>\n    <a href=' + recipe.url + '>Cook it today!</a>');
 	};
 
 	module.exports = {
