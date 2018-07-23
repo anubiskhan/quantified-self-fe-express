@@ -454,6 +454,7 @@
 
 	var handleResponse = function handleResponse(response) {
 	  return response.json().then(function (json) {
+	    console.log(json);
 	    if (!response.ok) {
 	      var error = {
 	        status: response.status,
