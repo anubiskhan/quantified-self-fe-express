@@ -476,7 +476,8 @@
 	};
 
 	module.exports = {
-	  getRecipes: getRecipes
+	  getRecipes: getRecipes,
+	  recipesAPIFetch: recipesAPIFetch
 	};
 
 /***/ }),
