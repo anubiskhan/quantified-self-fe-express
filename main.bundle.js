@@ -468,12 +468,12 @@
 
 	var getEachRecipe = function getEachRecipe(recipes) {
 	  recipes.forEach(function (recipe) {
-	    console.log(recipe);
 	    renderRecipe(recipe);
 	  });
 	};
 
 	var renderRecipe = function renderRecipe(recipe) {
+	  console.log(recipe);
 	  $('#recipes-info').append('<h3> Recipe name: ' + recipe.name + '</h3>\n    <a href=' + recipe.url + '>Cook it today!</a>');
 	};
 
