@@ -446,7 +446,7 @@
 	  recipesAPIFetch(foodId, 'GET').then(function (response) {
 	    return handleResponse(response);
 	  }).then(function (recipes) {
-	    return getEachRecipe(recipes);
+	    return getEachRecipe(recipes.recipes);
 	  }).catch(function (error) {
 	    return console.error({ error: error });
 	  });
